@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+    {% for user in users %}
+    <div class="example-wrapper">
+        <h1>Bonjour {{ user.lastname }} {{ user.firstname }}</h1>
+
+    </div>
+        {% endfor %}
+{% endblock %}

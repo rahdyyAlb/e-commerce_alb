@@ -1,0 +1,73 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Détails de
+    {{ product.name }}
+{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <section id="presentation" class="presentation">
+            <h2>Présentation {{ product.name }}</h2>
+            <div class="cols cols--2 gutter">
+                <div id="gallery-1" class="gallery gallery--zoom">
+                    <div>
+                        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                {% for iteration in 1..product.images|length %}
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ iteration - 1 }}" {{ (loop.first ) ?'class="active" aria-current="true"' : '' }} aria-label="Slide {{ iteration }}"></button>
+                                {% endfor %}
+                            </div>
+                            <div class="carousel-inner">
+                                {% for image in product.images %}
+                                    <div class="carousel-item {{ (loop.first ) ? 'active' : '' }}">
+                                        <img src="{{ asset('assets/uploads/') ~ image.name }}" class="d-block w-100 " alt="{{ product.name }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+
+                        <p>Photos non contractuelles</p>
+                    </div>
+                    <ul>
+
+                    </ul>
+                </div>
+                <div>
+                    <div class="cart-card">
+                        <div class="cart-card_price">
+                            <div><p> {{ product.price}} €</p></div>
+                        </div>
+                        <div class="cart-card_actions">
+                            {% if product.stock > 0 %}
+
+                            <button id="add-cart" class="button">
+                                Ajouter au panier
+                            </button>
+                            {% else %}
+                                <p class="text-danger">Temporairement en rupture de stock</p>
+                            {% endif %}
+
+                            <button id="add-wish" class="button button--alt">
+                                Ajouter à ma liste d'envie
+                            </button>
+                        </div>
+                        <div class="cart-card_guarantee">
+                            Garantie: 2 années vendeur
+                        </div>
+                    </div>
+                    <p>
+                        {{ product.description }}
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

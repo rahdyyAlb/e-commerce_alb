@@ -1,0 +1,72 @@
+<header class="header">
+	<div class="container display">
+		<div>Options d'affichage / accessiblité</div>
+		<div>
+			Thème&nbsp;:
+			<button id="theme-dark">sombre contrasté</button>
+			<button id="theme-none">clair</button>
+		</div>
+		<div>
+			Interlignage&nbsp;:
+			<button id="line-normal">simple</button>
+			<button id="line-large">augmenté</button>
+		</div>
+	</div>
+	<div class="container cols cols--4">
+		<div class="logo">
+			<a href="{{ path('main') }}">
+				<p>HiTech.NET</p>
+				<p>Tout le matériel High-Tech</p>
+			</a>
+		</div>
+		<div id="searchbar" class="searchbar double hide-md" role="searchbox">
+			<form action="product-1.html" method="post" novalidate="novalidate">
+				<input
+						name="query"
+						type="text"
+						placeholder="Chercher un produit, une marque..."
+				/>
+				<span>❯❯❯</span>
+				<select name="store">
+					<option value="0">Tous les rayons...</option>
+					<option value="1">Ordinateurs</option>
+					<option value="2">Péripheriques &amp; composants</option>
+					<option value="3">Téléphones</option>
+					<option value="4">Objets connectés</option>
+				</select>
+				<button><i class="icon-search"></i></button>
+			</form>
+		</div>
+		<div id="toolbar" class="toolbar" role="toolbar">
+		</div>
+	</div>
+	<nav id="menu" class="menu container">
+		<ul class="cols cols--4">
+			<li>
+				<a href="{{ path('main') }}"><i class="icon-data"></i>Acceuil</a>
+			</li>
+			<li>
+				<a href="/produits"><i class="icon-data"></i>Produit</a>
+			</li>
+			{% if app.user %}
+			<li>
+				<a href="/profil" id="user-button"><i class="icon-user"></i>Mon compte</a>
+
+			</li>
+			<li>
+				<a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Me deconecter</a>
+			</li>
+			{% else %}
+
+			<li>
+				<a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Me conecter</a>
+			</li>
+
+			<li>
+				<a class="nav-link active" aria-current="page" href="{{ path('app_register') }}">M'inscrire</a>
+
+			</li>
+			{% endif %}
+		</ul>
+	</nav>
+</header>
